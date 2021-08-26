@@ -9,7 +9,12 @@ function isHabitablePlanet(planet) {
     "CONFIRMED" &&
     planet["koi_insol"] > 0.36 &&
     planet["koi_insol"] < 1.11 &&
-    planet["koi_prad"] < 1.6);
+    planet["koi_prad"] < 1.6 &&
+    hasKeplerName(planet["kepler_name"]));
+}
+
+function hasKeplerName(planetName) {
+  return planetName !== "";
 }
 
 function loadPlanetsData() {
