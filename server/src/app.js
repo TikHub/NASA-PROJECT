@@ -3,6 +3,7 @@ const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
 const fs = require("fs");
+// const rfs = require("rotating-file-stream");
 
 const planetsRouter = require("./routes/planets/planets.router");
 
@@ -23,13 +24,25 @@ app.use(
   })
 );
 
-app.use(
-  morgan("combined", {
-    stream: fs.createWriteStream(path.join(__dirname, "..", "access.log"), {
-      flags: "a",
-    }),
-  })
-);
+// ROTATION
+// const accessLogStream = rfs.createStream("rotation.log", {
+//   interval: "20s",
+//   path: path.join(__dirname, "..", "logs"),
+// });
+// app.use(
+//   morgan("combined", {
+//     stream: accessLogStream,
+//   })
+// );
+
+// CREATE WRITE STREAM
+// app.use(
+//   morgan("combined", {
+//     stream: fs.createWriteStream(path.join(__dirname, "..", "access.log"), {
+//       flags: "a",
+//     }),
+//   })
+// );
 
 app.use(express.json());
 
