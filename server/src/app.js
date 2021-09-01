@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const morgan = require("morgan");
+const fs = require("fs");
 
 const planetsRouter = require("./routes/planets/planets.router");
 
@@ -20,6 +22,15 @@ app.use(
     // },
   })
 );
+
+app.use(
+  morgan("combined", {
+    stream: fs.createWriteStream(path.join(__dirname, "..", "access.log"), {
+      flags: "a",
+    }),
+  })
+);
+
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "..", "public")));
