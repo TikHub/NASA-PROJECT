@@ -6,6 +6,7 @@ const fs = require("fs");
 // const rfs = require("rotating-file-stream");
 
 const planetsRouter = require("./routes/planets/planets.router");
+const launchesRouter = require("./routes/launches/launches.routes");
 
 const app = express(); // Setup Express application
 
@@ -49,8 +50,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use(planetsRouter);
+app.use(launchesRouter);
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
