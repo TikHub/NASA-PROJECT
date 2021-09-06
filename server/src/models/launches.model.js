@@ -16,6 +16,10 @@ const launch = {
 
 launches.set(launch.flightNumber, launch);
 
+function getAllLaunches() {
+  return Array.from(launches.values()); // Turns the iterable 'launches.values()' into an array, containing all of that values
+}
+
 module.exports = {
-  launches,
+  getAllLaunches,
 };
