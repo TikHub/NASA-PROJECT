@@ -32,3 +32,10 @@ const launchesSchema = new mongoose.Schema({
     default: true,
   },
 });
+
+// NOTE First argument should be singular name of the collection, that this model represents
+//  Mongoose will take the first argument, lowercase it,
+//  make it plural and talk to the collection with that name
+
+// Connect launches schema with the "launches" collection
+module.exports = mongoose.model("Launch", launchesSchema);
